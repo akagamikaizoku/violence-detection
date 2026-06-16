@@ -1,0 +1,351 @@
+/* Additional Enhancement Styles */
+
+/* Add ripple effect to buttons */
+.btn.ripple,
+.login-button.ripple,
+.filter-btn.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Enhanced button hover states */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Enhanced log line highlighting */
+.log-line {
+  position: relative;
+}
+
+.log-line::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: rgba(52, 152, 219, 0.1);
+  transition: width 0.3s ease;
+}
+
+.log-line:hover::before {
+  width: 100%;
+}
+
+/* Stat card animations on load */
+.stat-card {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.stat-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.stat-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stat-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.stat-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading state for stat numbers */
+.stat-number.loading {
+  background: linear-gradient(
+    90deg,
+    var(--text-primary) 0%,
+    var(--text-secondary) 50%,
+    var(--text-primary) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 2s infinite;
+}
+
+/* Enhanced filter button states */
+.filter-btn {
+  position: relative;
+}
+
+.filter-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.filter-btn.active::after {
+  width: 80%;
+}
+
+/* Enhanced search input focus */
+.search-container input:focus {
+  box-shadow: 0 0 0 3px var(--input-focus),
+              0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Status indicator pulse animation */
+.status-dot {
+  position: relative;
+}
+
+.status-dot::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0;
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Enhanced scrollbar for dark mode */
+body.dark-mode .log-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--scrollbar-thumb) 0%, rgba(71, 85, 105, 0.5) 100%);
+}
+
+/* Tooltip arrows in different directions */
+.tooltip-left .tooltiptext {
+  bottom: auto;
+  top: 50%;
+  left: auto;
+  right: 125%;
+  transform: translateY(-50%);
+}
+
+.tooltip-left .tooltiptext::after {
+  top: 50%;
+  left: 100%;
+  right: auto;
+  bottom: auto;
+  margin-left: 0;
+  margin-top: -5px;
+  border-color: transparent transparent transparent rgba(0, 0, 0, 0.9);
+}
+
+/* Context menu styles */
+.context-menu {
+  position: fixed;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  min-width: 180px;
+  z-index: 10000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.context-menu-item {
+  padding: 10px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.context-menu-item:hover {
+  background: rgba(52, 152, 219, 0.1);
+}
+
+.context-menu-item i {
+  width: 16px;
+  text-align: center;
+}
+
+.context-menu-divider {
+  height: 1px;
+  background: var(--input-border);
+  margin: 8px 0;
+}
+
+/* Enhanced error message with icon animation */
+.error-message svg {
+  animation: wobble 0.5s ease-in-out;
+}
+
+@keyframes wobble {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+}
+
+/* Loading skeleton for stat cards */
+.stat-card.skeleton {
+  pointer-events: none;
+}
+
+.stat-card.skeleton .stat-number,
+.stat-card.skeleton .stat-label {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  color: transparent !important;
+}
+
+body.dark-mode .stat-card.skeleton .stat-number,
+body.dark-mode .stat-card.skeleton .stat-label {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+}
+
+/* Enhanced button loading state */
+.btn.loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.btn.loading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.6s linear infinite;
+}
+
+/* Enhanced input validation states */
+.input-wrapper input.valid {
+  border-color: #27ae60;
+}
+
+.input-wrapper input.invalid {
+  border-color: #e74c3c;
+}
+
+.input-wrapper input.valid:focus {
+  box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.15);
+}
+
+.input-wrapper input.invalid:focus {
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
+}
+
+/* Badge styles */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.badge.success {
+  background: rgba(39, 174, 96, 0.1);
+  color: #27ae60;
+}
+
+.badge.error {
+  background: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+}
+
+.badge.warning {
+  background: rgba(243, 156, 18, 0.1);
+  color: #f39c12;
+}
+
+.badge.info {
+  background: rgba(52, 152, 219, 0.1);
+  color: #3498db;
+}
+
+/* Print styles */
+@media print {
+  .theme-toggle,
+  .controls-section,
+  .action-buttons {
+    display: none !important;
+  }
+
+  .container {
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .log-container {
+    height: auto;
+    max-height: none;
+  }
+}
